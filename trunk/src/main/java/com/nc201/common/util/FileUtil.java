@@ -9,29 +9,37 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
-import java.util.Properties;
 
 /**
  * IO操作工具类
  * 
  * @author zhuzf
- * @date 2005-11-23
  */
 public class FileUtil {
 
 	public static void input2output(final InputStream in, final OutputStream out) throws Exception {
-		in.available();
-		byte[] buffer = new byte[1024];
-		while (true) {
-			int r = in.read(buffer);
-			if (r == -1) {
-				break;
+		try {
+			in.available();
+			byte[] buffer = new byte[1024];
+			while (true) {
+				int r = in.read(buffer);
+				if (r == -1) {
+					break;
+				}
+				out.write(buffer, 0, r);
+			} // End while
+			buffer = null;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(in!=null){
+				in.close();
 			}
-			out.write(buffer, 0, r);
-		} // End while
-		buffer = null;
-		in.close();
-		out.close();
+			if(out!=null){
+				out.close();
+			}			
+		}
 	}
 
 	public static void input2file(final InputStream in, final File file) throws Exception {
@@ -91,12 +99,23 @@ public class FileUtil {
 	 * @throws Exception
 	 */
 	public static void outputFile(File file, String content,String encoding) throws Exception {
-		OutputStream fileOut = new FileOutputStream(file);
-		Writer fileWriter = new OutputStreamWriter(fileOut, encoding);
-		fileWriter.write(content);
-		fileWriter.close();
-		fileOut.close();
-		// return txtContent.toString();
+		OutputStream fileOut=null;
+		Writer fileWriter=null;
+		try {
+			fileOut = new FileOutputStream(file);
+			fileWriter = new OutputStreamWriter(fileOut, encoding);
+			fileWriter.write(content);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(fileWriter!=null){
+				fileWriter.close();
+			}
+			if(fileOut!=null){
+				fileOut.close();
+			}					
+		}
 	}
 	/**
 	 * 读取文件内容
@@ -128,19 +147,26 @@ public class FileUtil {
 	 */
 	public static String readFileContent(InputStream fileIn,String encoding) throws Exception {
 		//InputStream fileIn = new FileInputStream(file);
-		Reader fileReader = new InputStreamReader(fileIn, encoding);
-		int j = -1;
+		Reader fileReader = null;
 		StringBuffer txtContent = new StringBuffer();
-		while ((j = fileReader.read()) != -1) {
-			txtContent.append((char) j);
+		try {
+			fileReader = new InputStreamReader(fileIn, encoding);
+			int j = -1;
+			while ((j = fileReader.read()) != -1) {
+				txtContent.append((char) j);
+			}
+		} catch (Exception e) {
+			throw e;
+		}finally{
+			if(fileIn!=null){
+				fileIn.close();
+			}
+			if(fileReader!=null){
+				fileReader.close();
+			}	
 		}
-		fileIn.close();
+
 		return txtContent.toString();
 	}		
-	public static void main(String[] args) throws Exception {
-		//System.out.println(readFileContent(FileUtil.class.getResourceAsStream("./user.json"),"GBK"));
-		Properties prop=new Properties();
-		prop.load(FileUtil.class.getResourceAsStream("./test.txt"));
-		System.out.println(prop.get("sql"));
-	}
+
 }
