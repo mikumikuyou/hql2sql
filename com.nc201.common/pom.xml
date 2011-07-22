@@ -1,10 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>nc201</groupId>
-  <artifactId>hql2sql</artifactId>
-  <version>0.9</version>
-  <name>hql2sql</name>
-  <description>扩展hibernate hql，支持动态类加载，并且不依赖于hibernate上下文</description>
+  <artifactId>common</artifactId>
+  <version>1.0</version>
+  <name>com.nc201.common</name>
   <dependencies>
     <dependency>
       <groupId>com.google.code.gson</groupId>
@@ -42,7 +41,8 @@
     	<scope>compile</scope>
     </dependency>
   </dependencies>
-	 <build>  
+  <description>公共组件包</description>
+  <build>  
 	    <plugins>  
 	      <plugin>  
 	        <groupId>org.apache.maven.plugins</groupId>  
