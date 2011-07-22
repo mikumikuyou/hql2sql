@@ -1,0 +1,102 @@
+[
+   {
+      "hql":"from user u",
+      "result":{
+         "DB2":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_",
+         "Oracle9i":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_",
+         "HSQL":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_",
+         "MySQL":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_",
+         "SQLServer":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_"
+      }
+   },
+   {
+      "hql":"select u from book u left join u.user t where t.name=?",
+      "result":{
+         "DB2":"select book0_.id as id1_, book0_.bookName as bookName1_, book0_.author as author1_, book0_.publishDate as publishD0_1_, book0_.userId as userId1_ from Test_Book book0_ left outer join Test_User user1_ on book0_.userId=user1_.id where user1_.name=?",
+         "Oracle9i":"select book0_.id as id1_, book0_.bookName as bookName1_, book0_.author as author1_, book0_.publishDate as publishD0_1_, book0_.userId as userId1_ from Test_Book book0_, Test_User user1_ where book0_.userId=user1_.id(+) and user1_.name=?",
+         "HSQL":"select book0_.id as id1_, book0_.bookName as bookName1_, book0_.author as author1_, book0_.publishDate as publishD0_1_, book0_.userId as userId1_ from Test_Book book0_ left outer join Test_User user1_ on book0_.userId=user1_.id where user1_.name=?",
+         "MySQL":"select book0_.id as id1_, book0_.bookName as bookName1_, book0_.author as author1_, book0_.publishDate as publishD0_1_, book0_.userId as userId1_ from Test_Book book0_ left outer join Test_User user1_ on book0_.userId=user1_.id where user1_.name=?",
+         "SQLServer":"select book0_.id as id1_, book0_.bookName as bookName1_, book0_.author as author1_, book0_.publishDate as publishD0_1_, book0_.userId as userId1_ from Test_Book book0_ left outer join Test_User user1_ on book0_.userId=user1_.id where user1_.name=?"
+      }
+   },
+   {
+      "hql":"select t from user u left join u.books t where t.bookName=?",
+      "result":{
+         "DB2":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_ left outer join Test_Book book1_ on user0_.id=book1_.userId where book1_.bookName=?",
+         "Oracle9i":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_, Test_Book book1_ where user0_.id=book1_.userId(+) and book1_.bookName=?",
+         "HSQL":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_ left outer join Test_Book book1_ on user0_.id=book1_.userId where book1_.bookName=?",
+         "MySQL":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_ left outer join Test_Book book1_ on user0_.id=book1_.userId where book1_.bookName=?",
+         "SQLServer":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_ left outer join Test_Book book1_ on user0_.id=book1_.userId where book1_.bookName=?"
+      }
+   },
+   {
+      "hql":"SELECT s FROM user t left join t.courses s  where t.name = ?",
+      "result":{
+         "DB2":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_ left outer join RELA_USER_COURSE course1_ on user0_.id=course1_.user_id left outer join Test_Course course2_ on course1_.course_id=course2_.id where user0_.name=?",
+         "Oracle9i":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_, RELA_USER_COURSE course1_, Test_Course course2_ where user0_.id=course1_.user_id(+) and course1_.course_id=course2_.id(+) and user0_.name=?",
+         "HSQL":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_ left outer join RELA_USER_COURSE course1_ on user0_.id=course1_.user_id left outer join Test_Course course2_ on course1_.course_id=course2_.id where user0_.name=?",
+         "MySQL":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_ left outer join RELA_USER_COURSE course1_ on user0_.id=course1_.user_id left outer join Test_Course course2_ on course1_.course_id=course2_.id where user0_.name=?",
+         "SQLServer":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_ left outer join RELA_USER_COURSE course1_ on user0_.id=course1_.user_id left outer join Test_Course course2_ on course1_.course_id=course2_.id where user0_.name=?"
+      }
+   },
+   {
+      "hql":"SELECT s FROM course t join t.users s  where t.KCMC = ?",
+      "result":{
+         "DB2":"select user2_.id as id0_, user2_.name as name0_, user2_.age as age0_, user2_.slary as slary0_, user2_.brithday as brithday0_ from Test_Course course0_ inner join RELA_USER_COURSE user1_ on course0_.id=user1_.course_id inner join Test_User user2_ on user1_.user_id=user2_.id where course0_.KCMC=?",
+         "Oracle9i":"select user2_.id as id0_, user2_.name as name0_, user2_.age as age0_, user2_.slary as slary0_, user2_.brithday as brithday0_ from Test_Course course0_, RELA_USER_COURSE user1_, Test_User user2_ where course0_.id=user1_.course_id and user1_.user_id=user2_.id and course0_.KCMC=?",
+         "HSQL":"select user2_.id as id0_, user2_.name as name0_, user2_.age as age0_, user2_.slary as slary0_, user2_.brithday as brithday0_ from Test_Course course0_ inner join RELA_USER_COURSE user1_ on course0_.id=user1_.course_id inner join Test_User user2_ on user1_.user_id=user2_.id where course0_.KCMC=?",
+         "MySQL":"select user2_.id as id0_, user2_.name as name0_, user2_.age as age0_, user2_.slary as slary0_, user2_.brithday as brithday0_ from Test_Course course0_ inner join RELA_USER_COURSE user1_ on course0_.id=user1_.course_id inner join Test_User user2_ on user1_.user_id=user2_.id where course0_.KCMC=?",
+         "SQLServer":"select user2_.id as id0_, user2_.name as name0_, user2_.age as age0_, user2_.slary as slary0_, user2_.brithday as brithday0_ from Test_Course course0_ inner join RELA_USER_COURSE user1_ on course0_.id=user1_.course_id inner join Test_User user2_ on user1_.user_id=user2_.id where course0_.KCMC=?"
+      }
+   },
+   {
+      "hql":"select t from book u left join u.user t where t.name=?",
+      "result":{
+         "DB2":"select user1_.id as id0_, user1_.name as name0_, user1_.age as age0_, user1_.slary as slary0_, user1_.brithday as brithday0_ from Test_Book book0_ left outer join Test_User user1_ on book0_.userId=user1_.id where user1_.name=?",
+         "Oracle9i":"select user1_.id as id0_, user1_.name as name0_, user1_.age as age0_, user1_.slary as slary0_, user1_.brithday as brithday0_ from Test_Book book0_, Test_User user1_ where book0_.userId=user1_.id(+) and user1_.name=?",
+         "HSQL":"select user1_.id as id0_, user1_.name as name0_, user1_.age as age0_, user1_.slary as slary0_, user1_.brithday as brithday0_ from Test_Book book0_ left outer join Test_User user1_ on book0_.userId=user1_.id where user1_.name=?",
+         "MySQL":"select user1_.id as id0_, user1_.name as name0_, user1_.age as age0_, user1_.slary as slary0_, user1_.brithday as brithday0_ from Test_Book book0_ left outer join Test_User user1_ on book0_.userId=user1_.id where user1_.name=?",
+         "SQLServer":"select user1_.id as id0_, user1_.name as name0_, user1_.age as age0_, user1_.slary as slary0_, user1_.brithday as brithday0_ from Test_Book book0_ left outer join Test_User user1_ on book0_.userId=user1_.id where user1_.name=?"
+      }
+   },
+   {
+      "hql":"select user.books from user user ",
+      "result":{
+         "DB2":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_ inner join Test_Book book1_ on user0_.id=book1_.userId",
+         "Oracle9i":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_, Test_Book book1_ where user0_.id=book1_.userId",
+         "HSQL":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_ inner join Test_Book book1_ on user0_.id=book1_.userId",
+         "MySQL":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_ inner join Test_Book book1_ on user0_.id=book1_.userId",
+         "SQLServer":"select book1_.id as id1_, book1_.bookName as bookName1_, book1_.author as author1_, book1_.publishDate as publishD0_1_, book1_.userId as userId1_ from Test_User user0_ inner join Test_Book book1_ on user0_.id=book1_.userId"
+      }
+   },
+   {
+      "hql":"select user.courses from user user ",
+      "result":{
+         "DB2":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_ inner join RELA_USER_COURSE course1_ on user0_.id=course1_.user_id inner join Test_Course course2_ on course1_.course_id=course2_.id",
+         "Oracle9i":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_, RELA_USER_COURSE course1_, Test_Course course2_ where user0_.id=course1_.user_id and course1_.course_id=course2_.id",
+         "HSQL":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_ inner join RELA_USER_COURSE course1_ on user0_.id=course1_.user_id inner join Test_Course course2_ on course1_.course_id=course2_.id",
+         "MySQL":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_ inner join RELA_USER_COURSE course1_ on user0_.id=course1_.user_id inner join Test_Course course2_ on course1_.course_id=course2_.id",
+         "SQLServer":"select course2_.id as id2_, course2_.KCMC as KCMC2_, course2_.KCZS as KCZS2_ from Test_User user0_ inner join RELA_USER_COURSE course1_ on user0_.id=course1_.user_id inner join Test_Course course2_ on course1_.course_id=course2_.id"
+      }
+   },
+   {
+      "hql":"select new list(user.name,user.age) from user user ",
+      "result":{
+         "DB2":"select user0_.name as col_0_0_, user0_.age as col_1_0_ from Test_User user0_",
+         "Oracle9i":"select user0_.name as col_0_0_, user0_.age as col_1_0_ from Test_User user0_",
+         "HSQL":"select user0_.name as col_0_0_, user0_.age as col_1_0_ from Test_User user0_",
+         "MySQL":"select user0_.name as col_0_0_, user0_.age as col_1_0_ from Test_User user0_",
+         "SQLServer":"select user0_.name as col_0_0_, user0_.age as col_1_0_ from Test_User user0_"
+      }
+   },
+   {
+      "hql":"from user  fetch all properties order by name",
+      "result":{
+         "DB2":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_ order by user0_.name",
+         "Oracle9i":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_ order by user0_.name",
+         "HSQL":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_ order by user0_.name",
+         "MySQL":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_ order by user0_.name",
+         "SQLServer":"select user0_.id as id0_, user0_.name as name0_, user0_.age as age0_, user0_.slary as slary0_, user0_.brithday as brithday0_ from Test_User user0_ order by user0_.name"
+      }
+   }
+]
