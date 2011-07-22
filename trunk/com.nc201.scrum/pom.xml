@@ -74,7 +74,7 @@
    
   	<dependency>
   		<groupId>nc201</groupId>
-  		<artifactId>common</artifactId>
+  		<artifactId>com.nc201.common</artifactId>
   		<version>1.0</version>
   		<type>jar</type>
   		<scope>compile</scope>
