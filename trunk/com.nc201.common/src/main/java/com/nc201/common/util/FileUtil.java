@@ -1,5 +1,6 @@
 package com.nc201.common.util;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,6 +10,10 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * IO操作工具类
@@ -48,7 +53,11 @@ public class FileUtil {
 	public static void input2file(final InputStream in, final String fileName) throws Exception {
 		input2file(in, new File(fileName));
 	}
-
+	/**
+	 * 删除文件
+	 * @param filePath
+	 * @throws Exception
+	 */
 	public static void deleteFile(String filePath) throws Exception {
 		File file = new File(filePath);
 		if (file.exists() && !file.isDirectory()) {
@@ -166,4 +175,82 @@ public class FileUtil {
 		return txtContent.toString();
 	}		
 
+	/**
+	 * 读取文件内容
+	 * 
+	 * @param file
+	 * @return
+	 * @throws Exception
+	 */
+	public static String utf8ReadFile(File file)throws Exception{		
+		FileInputStream in =null; 
+		// 指定读取文件时以UTF-8的格式读取
+		BufferedReader br =null;
+		
+		StringBuffer sb=new StringBuffer();
+		
+		
+		try {
+			in=new FileInputStream(file);
+			br=new BufferedReader(new UnicodeReader(in, Charset.defaultCharset().name()));
+			
+			
+			String line = br.readLine();
+			while(line != null){
+				sb.append( line);
+				line = br.readLine();			
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			try{
+				in.close();
+			}catch(Exception e){}
+			try{
+				br.close();
+			}catch(Exception e){}			
+		}
+		
+		return sb.toString();
+	}
+	/**
+	 * 保存map数据到文件
+	 * @param map
+	 * @param file
+	 * @throws Exception
+	 */
+	public static void storeMap(Map<String,String> map,File file)throws Exception{	
+		Properties props = new Properties();
+		props.putAll(map);
+		OutputStream fos =null;
+		try {
+			fos = new FileOutputStream(file);
+			props.store(fos, "");
+		} catch (Exception e) {
+			throw e;
+		}finally{
+			fos.close();
+		}
+	}
+	/**
+	 * 获取文件数据到Map对象中
+	 * @param file
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Map<String,String> getMap(File file)throws Exception{
+		Properties props = new Properties();
+		InputStream in=null;
+		try {
+			in=new FileInputStream(file);
+			props.load(in);
+		} catch (Exception e) {
+			throw e; 
+		}finally{
+			in.close();
+		}
+		Map<String,String> map=new HashMap(props);
+		return map;
+	}
 }
