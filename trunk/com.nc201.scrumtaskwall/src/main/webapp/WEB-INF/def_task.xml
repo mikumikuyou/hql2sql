@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel>
+	<root>
+		<mxCell id="0"/>
+		<mxCell id="1" parent="0"/>
+		<mxCell id="2" value="NOT CHECKED OUT" style="swimlane;fillColor=#D2E9FF" vertex="1" connectable="0" parent="1">
+			<mxGeometry x="0" y="0" width="240" height="550" as="geometry"/>    
+		</mxCell>    
+		<mxCell id="3" value="CHEKCED OUT" style="swimlane;fillColor=#FFFFCE" vertex="1" connectable="0" parent="1">      
+			<mxGeometry x="240" y="0" width="240" height="550" as="geometry"/>    
+		</mxCell>    
+		<mxCell id="4" value="DONE!!!" style="swimlane;fillColor=#DDFFDD" vertex="1" connectable="0" parent="1">      
+			<mxGeometry x="480" y="0" width="240" height="550" as="geometry"/>    
+		</mxCell>    
+	</root>
+</mxGraphModel>

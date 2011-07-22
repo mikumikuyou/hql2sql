@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<mxEditor swimlaneRequired="1" >
+	<mxDefaultKeyHandler as="keyHandler">
+		
+		<add as="8" action="collapse"/>
+		<add as="13" action="expand"/>
+		<add as="33" action="exitGroup"/>
+		<add as="34" action="enterGroup"/>
+		<add as="35" action="refresh"/>
+		<add as="36" action="home"/>
+		<add as="37" action="selectPrevious"/>
+		<add as="38" action="selectParent"/>
+		<add as="40" action="selectChild"/>
+		<add as="39" action="selectNext"/>
+		<add as="46" action="delete"/>
+		<add as="65" control="1" action="selectAll"/>
+		<add as="90" control="1" action="undo"/>
+		<add as="89" control="1" action="redo"/>
+		<add as="88" control="1" action="cut"/>
+		<add as="67" control="1" action="copy"/>
+		<add as="86" control="1" action="paste"/>
+		<add as="71" control="1" action="group"/>
+		<add as="85" control="1" action="ungroup"/>
+		<add as="113" action="edit"/>		
+		<add as="123" action="showProperties"/>
+		<add as="107" action="zoomIn"/>
+		<add as="109" action="zoomOut"/>
+		
+	</mxDefaultKeyHandler>	
+	<!--
+	<add as="onInit"><![CDATA[
+		function (isFirstTime){
+			this.graph.graphHandler.setRemoveCellsFromParent(false);
+			this.graph.isCellEditable = function(cell){
+				return false;
+			};			
+		}
+	]]></add>	
+	-->
+		
+	<ui>
+		<add as="graph" element="graph"/>
+		<add as="toolbar" element="toolbar"/>
+		<!--<add as="status" element="status"
+			style="height:20px;bottom:20px;left:20px;right:20px"/>
+		<add as="toolbar" x="16" y="20" width="50" style="padding:5px;padding-top:8px;padding-right:0px;"/>-->
+		<!--<add as="properties" element="properties"/>-->
+	</ui>
+	<!--
+	<Array as="cycleAttributeValues">
+		<add value="#D2E9FF"/>
+		<add value="#FFFFCE"/>
+		<add value="#E8FFE8"/>
+	</Array>	
+	-->
+	<Array as="templates">
+		<add as="swimlane">
+			<Swimlane title="Role" customAttribute="text value">
+				<mxCell vertex="1" style="swimlane" connectable="0" >
+					<mxGeometry as="geometry" width="240" height="580"/>
+				</mxCell>
+			</Swimlane>
+		</add>
+		<add as="task">
+			<Task title="任务" initDay="1" remainDay="0" charge="张三" status="notChecked">
+				<mxCell vertex="1" style="task" >	
+					<mxGeometry as="geometry" width="80" height="30"/>
+				</mxCell>
+			</Task>
+		</add>
+	</Array>
+	<mxGraph as="graph" alternateEdgeStyle="verticalEdge"
+		swimlaneNesting="0" dropEnabled="1">
+		<add as="convertValueToString"><![CDATA[
+			function(cell){
+				if(!this.isSwimlane(cell)){
+					return cell.getAttribute('title');
+				}else{
+					return cell.value;
+					//return cell.getAttribute('value');
+				}
+			}
+		]]></add>	
+		<mxStylesheet as="stylesheet">
+			<add as="defaultVertex">
+				<add as="shape" value="rectangle"/>
+				<add as="perimeter" value="rectanglePerimeter"/>
+				<add as="fontColor" value="black"/>
+				<add as="fontSize" value="10"/>
+				<add as="align" value="center"/>
+				<add as="verticalAlign" value="middle"/>
+				<add as="fillColor" value="indicated"/>
+				<add as="indicatorColor" value="swimlane"/>
+			</add>			
+			<add as="swimlane">
+				<add as="shape" value="swimlane"/>
+				<add as="perimeter" value="rectanglePerimeter"/>
+				<add as="fontSize" value="18"/>
+				<add as="startSize" value="23"/>
+				<add as="rounded" value="1"/>
+				<add as="align" value="center"/>
+				<add as="verticalAlign" value="top"/>
+				<add as="fontColor" value="black"/>
+				<add as="separatorColor" value="#9597BE"/>
+			</add>
+			<add as="task" >
+				<add as="shape" value="rectangle"/>
+				<add as="strokeColor" value="#000000"/>
+				<add as="fontSize" value="9"/>
+				<add as="gradientColor" value="white"/>
+			</add>			
+			
+		</mxStylesheet>		
+		
+	</mxGraph>
+	
+
+	<mxDefaultToolbar as="toolbar">
+		<add as="锁定" action="lock" icon="images/lock.gif" id="lock"/>
+		<add as="下载excel" action="excel" icon="images/excel.jpg" id="toExcel"/>
+		<add as="选择" mode="select" icon="images/select.gif" id="selectBtn"/>
+		<add as="添加任务" template="task" icon="images/rectangle.gif" id="taskBtn"/>
+		
+		<add as="自动排列" action="auto" icon="images/diagram.gif" id="autoBtn"/>
+		<!--<add as="导入excel" action="import" icon="images/import.png" id="importBtn"/>-->
+	
+	</mxDefaultToolbar>
+	
+	<Array as="actions">
+		<add as="lock"><![CDATA[
+			function (editor){
+				lock(editor);				
+			}
+		]]></add>		
+		<add as="excel"><![CDATA[
+			function (editor){
+				toXls(editor);				
+			}
+		]]></add>	
+		<add as="auto"><![CDATA[
+			function (editor){
+				autoArrange(editor);				
+			}
+		]]></add>			
+		<add as="import"><![CDATA[
+			function (editor){
+				importXls(editor);				
+			}
+		]]></add>						
+	</Array>	
+</mxEditor>
