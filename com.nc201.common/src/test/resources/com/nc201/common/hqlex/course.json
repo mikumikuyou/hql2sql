@@ -1,0 +1,31 @@
+{
+   "name":"course",
+   "dbName":"Test_Course",
+   "props":[
+      {
+         "name":"id",
+         "dbName":"id",
+         "dataType":"STRING",
+         "isPrimaryKey":true
+      },
+      {
+         "name":"KCMC",
+         "dbName":"KCMC",
+         "dataType":"STRING"
+      },
+      {
+         "name":"KCZS",
+         "dbName":"KCZS",
+         "dataType":"INT"
+      },
+      {
+         "name":"users",
+         "dataType":"SET",
+         "relaEntityName":"user",
+         "mappedPropName":"courses",
+         "joinTblName":"RELA_USER_COURSE",
+         "joinColName":"user_id",
+         "isManyMany":"true"
+      }
+   ]
+}
